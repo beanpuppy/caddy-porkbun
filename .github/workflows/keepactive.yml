@@ -1,0 +1,26 @@
+name: Keep repository active
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Update .lastupdate
+        run: echo $(date) > .lastupdate
+
+      - name: Commit
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: ".lastupdate"
+          default_author: user_info
+          message: "update .lastupdate to keep repository active"
