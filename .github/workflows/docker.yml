@@ -27,6 +27,8 @@ jobs:
         with:
           base-image: caddy:${{ matrix.version }}
           image: ${{ env.IMAGE_NAME }}:${{ matrix.version }}
+        env:
+          DEBUG: true
 
       - name: Checkout
         if: steps.check.outputs.needs-updating == 'true'
