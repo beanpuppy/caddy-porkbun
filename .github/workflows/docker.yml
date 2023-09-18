@@ -25,7 +25,7 @@ jobs:
         id: check
         uses: lucacome/docker-image-update-checker@v1
         with:
-          base-image: caddy:${{ matrix.version }}
+          base-image: caddy:${{ matrix.version }}-alpine
           image: ${{ env.IMAGE_NAME }}:${{ matrix.version }}
         env:
           DEBUG: true
